@@ -1,0 +1,30 @@
+default:
+    formatters:
+        pretty:
+            verbose: true
+            paths: false
+            snippets: false
+    suites:
+        default:
+            contexts_services:
+                - Behat\MinkExtension\Context\MinkContext
+                - App\Behat\Context\GreeterContext
+    extensions:
+        FriendsOfBehat\CrossContainerExtension: ~
+        Behat\MinkExtension:
+            base_url: 'http://www.example.com'
+            default_session: symfony
+            sessions:
+                symfony:
+                    symfony: ~
+            show_auto: false
+        FriendsOfBehat\SymfonyExtension:
+            env_file: .env
+            kernel:
+                class: 'App\Kernel'
+                path: src/Kernel.php
+                bootstrap: 'vendor/autoload.php'
+                debug: true
+        FriendsOfBehat\ContextServiceExtension:
+            imports:
+                - 'src/Behat/Resources/config/services.yml'

@@ -1,0 +1,10 @@
+services:
+    Behat\MinkExtension\Context\MinkContext:
+        tags:
+            - { name: fob.context_service }
+
+    App\Behat\Context\GreeterContext:
+        arguments:
+            - '@__symfony_driver__.App\Greeter\Greeter'
+        tags:
+            - { name: fob.context_service }
