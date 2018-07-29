@@ -35,6 +35,19 @@ class Kernel extends BaseKernel
         }
     }
 
+    /**
+     * Output a message when the container is being booted from an non-booted state.
+     * Helps demonstrate how many kernels are booted while the Behat scenario runs.
+     */
+    public function boot()
+    {
+        if (true !== $this->booted) {
+            echo 'Booting new kernel!' . PHP_EOL;
+        }
+
+        parent::boot();
+    }
+
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader)
     {
         $container->addResource(new FileResource($this->getProjectDir().'/config/bundles.php'));
